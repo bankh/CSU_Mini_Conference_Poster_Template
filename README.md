@@ -4,7 +4,7 @@ A LaTeX poster template for the Department of Systems Engineering at Colorado St
 
 ## Overleaf
 
-View and edit on Overleaf: [https://www.overleaf.com/read/txhjfvqfydfn#8bcf7c](https://www.overleaf.com/read/txhjfvqfydfn#8bcf7c)
+View and edit on Overleaf: [https://www.overleaf.com/read/kmxdbpbzvjwv#5effa7](https://www.overleaf.com/read/kmxdbpbzvjwv#5effa7)
 
 ## Files
 
