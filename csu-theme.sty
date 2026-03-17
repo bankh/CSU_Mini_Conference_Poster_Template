@@ -1,0 +1,129 @@
+% Colorado State University Poster Theme for the tikzposter package.
+% Adapted from University of Tartu theme by Joonas Puura
+% Modified for CSU Systems Engineering
+% Colors and dimensions extracted from Systems-Poster-Template-2025 SVG
+
+% -- COLOURS (from SVG) --
+% CSU Brand Colors
+\definecolor{CSUGreen}{HTML}{004326}     % CSU Green (primary) - line, bars
+\definecolor{CSUGold}{HTML}{C6C06C}      % CSU Gold (secondary) - gold stripe
+\definecolor{CSUDarkGreen}{HTML}{0A3A1F} % Darker green for accents
+\definecolor{CSUBlack}{HTML}{1F1F1F}     % Near-black (body text)
+\definecolor{CSUChartBlack}{HTML}{0A090D} % Chart series 1 color
+
+% Decorative dot colors (from SVG)
+\definecolor{CSUTeal}{HTML}{00889B}      % Dark teal (dot 1)
+\definecolor{CSUAmber}{HTML}{F5BA26}     % Gold/amber (dot 2)
+\definecolor{CSULime}{HTML}{CCD943}      % Lime (dot 3)
+
+% Neutral Colors (from SVG)
+\definecolor{CSUGray}{HTML}{595959}      % Chart axis text gray
+\definecolor{CSULightGray}{HTML}{D9D9D9} % Chart gridlines
+
+% Keep MainBlue alias for backward compatibility
+\colorlet{MainBlue}{CSUGreen}
+
+% tikzposter color palette
+\definecolorpalette{CSUPalette} {
+    \definecolor{colorOne}{named}{CSUGreen}
+    \definecolor{colorTwo}{named}{CSUGold}
+    \definecolor{colorThree}{named}{CSUDarkGreen}
+}
+
+% tikzposter style
+\definecolorstyle{CSUStyle} {
+    \usecolorpalette{CSUPalette}
+}{
+    % background
+    \colorlet{backgroundcolor}{white}
+    \colorlet{framecolor}{white}
+    % title colors
+    \colorlet{titlefgcolor}{black}
+    \colorlet{titlebgcolor}{white}
+    % block colors - no colored headers, clean white blocks (matches PPT)
+    \colorlet{blocktitlebgcolor}{white}
+    \colorlet{blocktitlefgcolor}{black}
+    \colorlet{blockbodybgcolor}{white}
+    \colorlet{blockbodyfgcolor}{black}
+    % innerblock colors
+    \colorlet{innerblocktitlebgcolor}{white}
+    \colorlet{innerblocktitlefgcolor}{black}
+    \colorlet{innerblockbodybgcolor}{white}
+    \colorlet{innerblockbodyfgcolor}{black}
+    % note colors
+    \colorlet{notefgcolor}{black}
+    \colorlet{notebgcolor}{CSUGold}
+    \colorlet{noteframecolor}{CSUGold}
+}
+
+% -- STYLE --
+
+% background
+\definebackgroundstyle{CSUBackgroundStyle}{
+    \draw[line width=0pt, color=framecolor, fill=backgroundcolor]
+    (bottomleft) rectangle (topright);
+}
+
+% title
+% SVG: line from x=63.5 to x=1830 (18.4"), stroke #004326, width 3
+% SVG: dots at x=1855,1897,1940 (r=10px=0.104"), y=237.5
+% Dot gap from line end: 0.26", dot-to-dot: 0.44"
+\definetitlestyle{CSUTitleStyle}{
+    width=\textwidth, linewidth=3pt, titletotopverticalspace=0in
+}{
+    \begin{scope}[line width=\titlelinewidth]
+    % Dark green horizontal line (18.4" wide from SVG)
+    \draw[color=CSUGreen, line width=3pt]
+    (\titleposleft,\titleposbottom)--(\titleposleft+18.4in,\titleposbottom);
+    % Three dots (0.21" diameter = 0.105" radius)
+    % Gap from line end to dot1: 0.26", dot spacing: 0.44"
+    \fill[CSUTeal] (\titleposleft+18.66in,\titleposbottom) circle (0.105in);
+    \fill[CSUAmber] (\titleposleft+19.10in,\titleposbottom) circle (0.105in);
+    \fill[CSULime] (\titleposleft+19.54in,\titleposbottom) circle (0.105in);
+    \end{scope}
+}
+
+% block - invisible containers, no borders or colored bars (matches PPT)
+\defineblockstyle{CSUBlockStyle}{
+    titlewidthscale=1.0, bodywidthscale=1.0, roundedcorners=0
+}{
+    \draw[color=white, fill=blockbodybgcolor]
+    (blockbody.south west) rectangle (blockbody.north east);
+    \ifBlockHasTitle
+    \draw[color=white, fill=blocktitlebgcolor]
+    (blocktitle.south west) rectangle (blocktitle.north east);
+    \fi
+}
+
+% -- THEME --
+\definelayouttheme{CSUTheme}{
+    \usecolorstyle[colorPalette=CSUPalette]{CSUStyle}
+    \usebackgroundstyle{CSUBackgroundStyle}
+    \usetitlestyle{CSUTitleStyle}
+    \useblockstyle{CSUBlockStyle}
+    \useinnerblockstyle{Default}
+    \usenotestyle{Default}
+}
+
+% -- TITLE FORMAT --
+% SVG: title at font-size 53.3, Poppins Medium, weight 500
+% SVG: title y=120 (line 1), y=184 (line 2), line spacing 64px
+% SVG: no author/institute in title area
+\makeatletter
+\renewcommand\TP@maketitle{%
+   \color{titlefgcolor}
+   {\fontseries{m}\selectfont \fontsize{42pt}{50pt}\selectfont \@title \par}
+}
+\makeatother
+
+% -- HELPER COMMANDS --
+% SVG: section headers are Poppins Medium (weight 500), font-size 32 (same as body)
+% Poppins Medium (weight 500) - NOT bold.
+% With helvet fallback, \fontseries{m} = regular weight (closest to medium).
+\newcommand{\postersection}[1]{%
+    {\fontseries{m}\selectfont #1}\par\medskip
+}
+% SVG: caption text is Poppins regular, font-size 24 (smaller than body 32)
+\newcommand{\postercaption}[1]{%
+    {\small\textit{#1}}
+}

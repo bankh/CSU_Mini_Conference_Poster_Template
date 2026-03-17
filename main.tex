@@ -1,0 +1,206 @@
+\documentclass[20pt,margin=0.5in,innermargin=0pt,blockverticalspace=-0.15in]{tikzposter}
+\geometry{paperwidth=24in,paperheight=36in} % 24 x 36 poster (from PPT template)
+\usepackage[utf8]{inputenc}
+\usepackage{csquotes}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{enumitem}
+\usepackage[backend=biber,style=numeric]{biblatex}
+\usepackage{csu-theme}
+\makeatletter
+% SVG: content from x=58 to ~2250 at 96 DPI = 22.8" wide
+% Title, line, and body text all start at same x (~0.6" from left)
+\setlength{\TP@visibletextwidth}{22.8in}
+\setlength{\TP@visibletextheight}{33.5in}
+% Remove all inner padding so title, line, and body text align at same x
+\setlength{\TP@titleinnersep}{0pt}
+\setlength{\titleinnersep}{0pt}
+\setlength{\TP@blockbodyinnersep}{0pt}
+\setlength{\TP@blocktitleinnersep}{0pt}
+\makeatother
+\usepackage{mwe} % for placeholder images
+\usepackage{bm}
+\usepackage{bbm}
+
+\addbibresource{refs.bib}
+
+% set theme parameters
+\tikzposterlatexaffectionproofoff
+\usetheme{CSUTheme}
+\usecolorstyle{CSUStyle}
+
+% Must be set AFTER \usetheme to avoid being overridden
+\makeatletter
+% SVG: gap from line (y=237) to first text (y=340) = 103px = 1.07"
+\setlength{\TP@titletoblockverticalspace}{1.07in}
+\makeatother
+
+% Font: SVG uses Poppins Medium/Regular
+% Poppins package for LaTeX (install via tlmgr if needed, fallback to helvet)
+\IfFileExists{Poppins.sty}{%
+    \usepackage{Poppins}%
+}{%
+    \usepackage[scaled]{helvet}%
+}
+\renewcommand\familydefault{\sfdefault}
+\usepackage[T1]{fontenc}
+
+\renewcommand{\vec}[1]{\bm{#1}}
+
+% SVG: title is 2 lines, font-size ~53pt, Poppins Medium
+% \parbox at full linewidth so title stays at 2 lines
+% \hspace{-1.5em}
+\title{\hspace{-0.5em}\parbox{\linewidth}{Make your title large and readable: Do not let it get too close to the edges \&\\[0.3em]
+leave a gap between the title and body (break titles at ``\&,'' ``or,'' and colons)}}
+
+% begin document
+\begin{document}
+\maketitle
+\centering
+\begin{columns}
+
+    % SVG: column 1 width ~1132/2304 = 49%, column 2 ~1001/2304 = 43%, gutter ~8%
+    \column{0.55}
+
+    \hspace{-1.5em}
+    
+    %% ---- LEFT COLUMN ---- %%
+    \block{}{
+        
+        \raggedright
+        \postersection{Intro: Try to format everything within a single text box like this}
+
+        The font we use is Poppins regular and Poppins medium. Text size can vary if you need but try to keep it to 2 sizes in the body, one for headers and one for paragraphs. The fewer the words the better. You will explain the complicated parts, the visual just needs to be useful so people can understand and take an interest. Of course, read and follow your conference's requirements.
+
+        \medskip
+        Do not use italics if you can avoid it. Do not make the text a lighter shade of gray if you can avoid it.
+
+        \bigskip
+        % Figure 1 placeholder
+        \begin{center}
+            \includegraphics[width=0.85\linewidth]{example-image}
+        \end{center}
+        \postercaption{Figure 1: This graph is an example of the type of simple graphic we want to use to explain our research if possible. It's OK to have explanation of graphs in detail but make sure it doesn't crowd the other text on the page and that it is visible to the reader. Remember the ``so what?'' of the graph you were using. Leave nuanced details to Q\&A.}
+
+        \bigskip
+        \postersection{Methods: Try to put visuals at the end of sections with more space following the caption}
+
+        You are encouraged to use simple bullet points. But remember, bullet points are only effective if they are simple:
+        \begin{itemize}[leftmargin=*, nosep]
+            \item We found significance at a 95\% confidence interval
+            \item We examined economic, social, and technical aspects of hydrogen use
+            \item We learned that simplicity rules; people don't want to read endlessly
+            \item Leaving some white space at the end of a column is acceptable
+        \end{itemize}
+
+        \medskip
+        Try not to split bullets between columns. Instead switch to paragraph form to round out your description. Or use an image to the left and continue with bullets starting at the top center. Too much method discussion will make your audience zone out. Better to leave it for discussion if you can, with key insights listed only.
+
+        \bigskip
+        \postersection{Results: I don't know about you, but I love getting to results}
+
+        This is where we usually have issues visually. Yes, we want images that show our results. We want them to be large and readable. We do NOT want them to crowd out the center of our poster. It looks bad to the eye and can confuse the reader's sense of flow. The solution is to use visuals that fully cross columns or to place them between text so they aren't all directly next to each other. Also, limit the number. Key images only.
+
+        \medskip
+        If your graphs or tables look too small set within a single column but they are too big stretched out across two columns, see if you can export your image at a different scale to fit wider or taller.
+
+        \medskip
+        Results also showed the need for us to include the requirements of multiple stakeholders in this complex system.
+    }
+
+
+    \column{0.52}
+    \hspace{-3em}
+
+    %% ---- RIGHT COLUMN ---- %%
+    \block{}{
+        \raggedright
+        % SVG: graph with caption at top of right column
+        \begin{center}
+            \includegraphics[width=0.85\linewidth]{example-image}
+        \end{center}
+        \postercaption{Figure 2: Use visuals that show only the noteworthy results. Keep the caption short but clear.}
+
+        \bigskip
+        \postersection{Future research: Keep it brief, ideal is 3 short bullets}
+        \begin{itemize}[leftmargin=*, nosep]
+            \item Study the impact of more \underline{Xs} on \underline{Ys}, controlling for X2
+            \item Qualitative research for deeper understanding of X
+            \item Complete phase two for more robust data and address the design weaknesses of this study.
+        \end{itemize}
+
+        \bigskip
+        % Figure 3 placeholder
+        \begin{center}
+            {\fontseries{m}\selectfont System stakeholders in model}\\[0.5em]
+            \includegraphics[width=0.85\linewidth]{example-image}
+        \end{center}
+        \postercaption{Figure 3: This model is a simplification of a complex system that involves many stakeholders, each with requirements included in our analysis.}
+
+        \bigskip
+        \postersection{Conclusion: This should connect to the bigger picture of your research}
+
+        Example: ``As hydrogen fueling stations grow to comparable scope of gasoline infrastructure, there is a need to understand the demand for hydrogen fueling. This study proposes a statistical model to predict the hour-by-hour demand for hydrogen fueling. Results can help operators make informed decisions on operations and maintenance strategies that will impact U.S. economics of hydrogen infrastructure.''
+
+        \bigskip
+        \postersection{References \& credit}
+
+        We recommend you list key contributors like authors, research partners, and funders. Include a link or QR code to full reference page, article, or draft.
+
+        \medskip
+        We recommend you list key contributors like authors, research partners, and funders. Include a link or QR code to full reference page, article, or draft.
+
+        \medskip
+        {[1] My above example uses more text than you'll likely need or want.
+
+        [2] If you don't go on and on like me, you'll have all the space you need for key references.
+
+        [3] Remember, if your graphs or tables look too small set within a single column but they are too big stretched out across two columns, see if you can export your image at a different scale to fit wider or taller.
+
+        [4] Thanks for reading and using this template!}
+
+        \bigskip
+        \noindent
+        \begin{minipage}[c]{0.6\linewidth}
+            For full reference page and draft scan this code.
+        \end{minipage}%
+        \hfill
+        \begin{minipage}[c]{0.35\linewidth}
+            \raggedleft
+            \includegraphics[height=2.1in]{CSU_template_draft_scan_QR.png}
+        \end{minipage}
+    }
+
+\end{columns}
+
+% Bottom bar (from SVG measurements at 96 DPI)
+% tikzposter origin (0,0) = center of 24"x36" paper
+% bottom-left corner = (-12in, -18in)
+% bottom-right corner = (12in, -18in)
+%
+% CSU Systems Engineering logo: sits above the green-yellow bar
+% Bar top edge is at y = -16.82in
+\hspace{+4em} % move up to make room for bottom bar
+\node[anchor=south west, inner sep=0pt]
+    at (-11.48in, -17.5in) {%
+    \includegraphics[height=1.31in]{CSU_bottom_left.png}%
+};
+% Small green QR code: next to logo, also above bar
+\node[anchor=south west, inner sep=0pt]
+    at (-5.76in, -17.55in) {%
+    \includegraphics[height=1.19in]{CSU_bottom_center.png}%
+};
+% Green-yellow bar (includes gold stripe): spans from ~8.16" from left to right edge
+% SVG: x=783 to x=2304 → 8.16" from left to 24" = 15.84" wide
+% Using green-yellow bar image which has the gold stripe built in
+\node[anchor=south east, inner sep=0pt]
+    at (12in, -18in) {%
+    \includegraphics[width=15.84in]{CSU_bottom_right_green-yellow_bar.png}%
+};
+
+\end{document}
